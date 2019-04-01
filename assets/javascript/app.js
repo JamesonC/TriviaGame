@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 var question1 = {
     text: "'The Mountain' is the nickname for which character?",
     answer: "Gregor Clegane",
@@ -33,13 +35,22 @@ var question5 = {
     correct: false,
 };
 
+
 var questionBank = [question1, question2, question3, question4, question5];
 var intervalId;
 var number = 30; // Number of seconds remaining
 var count = 0; // Keeps track of the index of the currently displaying question.
+var questionDetails = questionBank[count];
+
 
 function displayQuestion() {
-    $(`#question`).html(questionBank[count].text);
+
+    $(`#question`).html(questionDetails.text);
+    $(`#answer-choices`).html("<div>" + questionDetails.answer);
+
+    for (var i = 0; i < questionDetails.wrong.length; i++) {
+        $(`#answer-choices`).append("<div>" + questionDetails.wrong[i]);
+    }
 }
 
 displayQuestion();
@@ -53,8 +64,8 @@ function run() {
         $(`#time-remaining`).text(number);
 
         if (number === 0) {
-            stop();
             alert("Time is up!");
+            stop();
         }
     }
 }
@@ -63,4 +74,6 @@ function stop() {
     clearInterval(intervalId);
 }
 
-run();
+// run();
+
+});
