@@ -1,0 +1,10 @@
+.col-lg-12 {
+    outline-style: dashed;
+    margin-top: 50px;
+    min-height: 525px;
+    padding-top: 50px; 
+}
+
+#start {
+    margin-top: 100px;
+}
