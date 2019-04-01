@@ -36,7 +36,13 @@ var question5 = {
 var questionBank = [question1, question2, question3, question4, question5];
 var intervalId;
 var number = 30; // Number of seconds remaining
-var count = 0; // Count will keep track of the index of the currently displaying question.
+var count = 0; // Keeps track of the index of the currently displaying question.
+
+function displayQuestion() {
+    $(`#question`).html(questionBank[count].text);
+}
+
+displayQuestion();
 
 function run() {
     clearInterval(intervalId);
