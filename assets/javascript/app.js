@@ -46,10 +46,10 @@ var questionDetails = questionBank[count];
 function displayQuestion() {
 
     $(`#question`).html(questionDetails.text);
-    $(`#answer-choices`).html("<div>" + questionDetails.answer);
+    $(`#answer-choices`).html("<div class='choices'>" + questionDetails.answer);
 
     for (var i = 0; i < questionDetails.wrong.length; i++) {
-        $(`#answer-choices`).append("<div>" + questionDetails.wrong[i]);
+        $(`#answer-choices`).append("<div class='choices'>" + questionDetails.wrong[i]);
     }
 }
 
