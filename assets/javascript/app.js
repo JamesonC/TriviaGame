@@ -60,17 +60,36 @@ $(document).ready(function () {
     var intervalId;
     var number = 30; // Number of seconds remaining
     var count = 0; // Keeps track of the index of the currently displaying question.
-    var questionDetails = questionBank[count];
+
 
     function displayQuestion() {
+        var questionDetails = questionBank[count];
         $(`#question`).html(questionDetails.text);
 
         for (var i = 0; i < questionDetails.answer.length; i++) {
             $(`#answer-choices`).append(questionDetails.answer[i]);
         }
+        correct();
     }
 
     displayQuestion();
+
+    function correct() {
+        $(`#answer-choices div`).click(function () {
+            var correctAnswer = $(this).data('correct');
+
+            if (correctAnswer) {
+                $(this).addClass("choices btn btn-success");
+                count++;
+                alert("You are correct!")
+
+            } else {
+                $(this).addClass("choices btn btn-danger");
+                count++;
+                alert("You are wrong!")
+            }
+        });
+    }
 
     function run() {
         clearInterval(intervalId);
@@ -91,6 +110,6 @@ $(document).ready(function () {
         clearInterval(intervalId);
     }
 
-    // run();
+   // run();
 
 });
