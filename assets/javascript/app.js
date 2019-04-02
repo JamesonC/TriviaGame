@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     var questionBank = [question1, question2, question3, question4, question5];
     var intervalId;
-    var number = 10; // Number of seconds remaining
+    var number = 30; // Number of seconds remaining
     var count = 0; // Keeps track of the index of the currently displaying question.
     var wins = 0; // Holds the number of correct questions answered
     var losses = 0; // Holds the number of incorrect questions answered
@@ -64,7 +64,7 @@ $(document).ready(function () {
 
     function startGame() {
         displayQuestion();
-        $(`#splash-screen`).css('display', 'none');	
+        $(`#splash-screen`).css('display', 'none');
         $(`#game-screen`).css('display', 'inherit');
         $(`#results-screen`).css('display', 'none');
         runTimer();
