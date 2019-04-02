@@ -61,7 +61,6 @@ $(document).ready(function () {
     var number = 30; // Number of seconds remaining
     var count = 0; // Keeps track of the index of the currently displaying question.
 
-
     function displayQuestion() {
         var questionDetails = questionBank[count];
         $(`#question`).html(questionDetails.text);
@@ -81,12 +80,16 @@ $(document).ready(function () {
             if (correctAnswer) {
                 $(this).addClass("choices btn btn-success");
                 count++;
-                alert("You are correct!")
+                setTimeout(function() {
+                    nextQuestion();	
+                }, 1000);
 
             } else {
                 $(this).addClass("choices btn btn-danger");
                 count++;
-                alert("You are wrong!")
+                setTimeout(function() {
+                    nextQuestion();	
+                }, 1000);
             }
         });
     }
@@ -110,6 +113,10 @@ $(document).ready(function () {
         clearInterval(intervalId);
     }
 
-   // run();
+   run();
 
+   function nextQuestion() {
+        $(`#answer-choices`).empty();
+        displayQuestion();
+   }
 });
