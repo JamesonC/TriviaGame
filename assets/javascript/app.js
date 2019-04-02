@@ -60,6 +60,18 @@ $(document).ready(function () {
     var intervalId;
     var number = 30; // Number of seconds remaining
     var count = 0; // Keeps track of the index of the currently displaying question.
+    var wins = 0;
+    var losses = 0;
+
+    $(`#game-screen`).css('display', 'none');
+    $(`#start`).click(startGame);
+
+    function startGame() {
+        displayQuestion();
+        $("#splash-screen").css('display', 'none');	
+        $(`#game-screen`).css('display', 'inherit');
+        run();
+    }
 
     function displayQuestion() {
         var questionDetails = questionBank[count];
@@ -71,24 +83,24 @@ $(document).ready(function () {
         correct();
     }
 
-    displayQuestion();
-
     function correct() {
         $(`#answer-choices div`).click(function () {
             var correctAnswer = $(this).data('correct');
 
             if (correctAnswer) {
                 $(this).addClass("choices btn btn-success");
+                wins++
                 count++;
-                setTimeout(function() {
-                    nextQuestion();	
+                setTimeout(function () {
+                    nextQuestion();
                 }, 1000);
 
             } else {
                 $(this).addClass("choices btn btn-danger");
+                losses++;
                 count++;
-                setTimeout(function() {
-                    nextQuestion();	
+                setTimeout(function () {
+                    nextQuestion();
                 }, 1000);
             }
         });
@@ -113,10 +125,9 @@ $(document).ready(function () {
         clearInterval(intervalId);
     }
 
-   run();
-
-   function nextQuestion() {
+    function nextQuestion() {
+        $(`#question`).empty();
         $(`#answer-choices`).empty();
         displayQuestion();
-   }
+    }
 });
