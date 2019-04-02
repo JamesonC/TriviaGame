@@ -58,17 +58,18 @@ $(document).ready(function () {
 
     var questionBank = [question1, question2, question3, question4, question5];
     var intervalId;
-    var number = 30; // Number of seconds remaining
+    var number = 10; // Number of seconds remaining
     var count = 0; // Keeps track of the index of the currently displaying question.
     var wins = 0;
     var losses = 0;
 
     $(`#game-screen`).css('display', 'none');
+    $(`#results-screen`).css('display', 'none');
     $(`#start`).click(startGame);
 
     function startGame() {
         displayQuestion();
-        $("#splash-screen").css('display', 'none');	
+        $(`#splash-screen`).css('display', 'none');	
         $(`#game-screen`).css('display', 'inherit');
         run();
     }
@@ -106,6 +107,13 @@ $(document).ready(function () {
         });
     }
 
+    function results() {
+        $(`#game-screen`).css('display', 'none');
+        $(`#results-screen`).css('display', 'inherit');
+        $(`#wins`).text(wins);
+        $(`#losses`).text(losses);
+    }
+
     function run() {
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
@@ -115,14 +123,9 @@ $(document).ready(function () {
             $(`#time-remaining`).text(number);
 
             if (number === 0) {
-                alert("Time is up!");
-                stop();
+                results();
             }
         }
-    }
-
-    function stop() {
-        clearInterval(intervalId);
     }
 
     function nextQuestion() {
