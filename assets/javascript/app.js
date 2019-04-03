@@ -4,10 +4,11 @@ $(document).ready(function () {
         text: "'The Mountain' is the nickname for which character?",
         answer: [
             "<div class='choices btn btn-primary'>Oberyn Martell</div>",
-            "<div class='choices btn btn-primary'>Gerold Clegane</div>",
+            "<div class='choices btn btn-primary'>Harold Clegane</div>",
             "<div class='choices btn btn-primary'>Sandor Clegane</div>",
             "<div class='choices btn btn-primary' data-correct='true'>Gregor Clegane</div>"
         ],
+        gif: "<img src='./assets/images/mountain.gif' width='400px'/>",
     };
 
     var question2 = {
@@ -18,6 +19,7 @@ $(document).ready(function () {
             "<div class='choices btn btn-primary'>Joffrey Baratheon</div>",
             "<div class='choices btn btn-primary'>Stannis Baratheon</div>"
         ],
+        gif: "<img src='./assets/images/renly.gif' width='250px'/>",
     };
 
     var question3 = {
@@ -28,6 +30,7 @@ $(document).ready(function () {
             "<div class='choices btn btn-primary'>Ser Loras Tyrell</div>",
             "<div class='choices btn btn-primary'>Ser Jamie Lannister</div>"
         ],
+        gif: "<img src='./assets/images/barristan.gif' width='400px'/>",
     };
 
     var question4 = {
@@ -38,6 +41,7 @@ $(document).ready(function () {
             "<div class='choices btn btn-primary'>Tormund Giantsbane</div>",
             "<div class='choices btn btn-primary'>The Night King</div>"
         ],
+        gif: "<img src='./assets/images/mance.gif' width='300px'/>",
     };
 
     var question5 = {
@@ -48,6 +52,7 @@ $(document).ready(function () {
             "<div class='choices btn btn-primary' data-correct='true'>Twice</div>",
             "<div class='choices btn btn-primary'>None</div>"
         ],
+        gif: "<img src='./assets/images/sansa.gif' width='300px'/>",
     };
 
     var questionBank = [question1, question2, question3, question4, question5];
@@ -93,31 +98,33 @@ $(document).ready(function () {
     function correct() {
         $(`#answer-choices div`).click(function () {
             var correctAnswer = $(this).data('correct');
-    
+
             if (correctAnswer) {
                 $(this).addClass("choices btn btn-success");
                 wins++
-                count++;
                 setTimeout(function () {
-
+                    clearInterval(intervalId);
+                    $("#image-holder").html(questionBank[count].gif);
+                })
+                setTimeout(function () {
+                    runTimer();
                     nextQuestion();
-                }, 1000);
+                }, 3000)
 
             } else {
                 $(this).addClass("choices btn btn-danger");
                 losses++;
-                count++;
                 setTimeout(function () {
                     nextQuestion();
                 }, 1000);
             }
+
         });
     }
 
-// $("#image-holder").html("<img src='./assets/images/loading.gif' width='100px'/>");
-
     // displays next question within object
     function nextQuestion() {
+        count++;
         $(`#image-holder`).empty();
         $(`#question`).empty();
         $(`#answer-choices`).empty();
