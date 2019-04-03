@@ -40,3 +40,7 @@ button {
 .choices {
     margin: 5px;
 }
+
+#restart {
+    margin-top: 20px;
+}

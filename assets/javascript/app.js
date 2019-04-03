@@ -214,6 +214,7 @@ $(document).ready(function () {
     function results() {
         $(`#game-screen`).css('display', 'none');
         $(`#results-screen`).css('display', 'inherit');
+        $(`#time`).css('display', 'none');
         $(`#wins`).text(wins);
         $(`#losses`).text(losses);
     }
