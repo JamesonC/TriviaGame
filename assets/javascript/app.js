@@ -116,6 +116,7 @@ $(document).ready(function () {
     var count = 0; // Keeps track of the index of the currently displaying question.
     var wins = 0; // Holds the number of correct questions answered
     var losses = 0; // Holds the number of incorrect questions answered
+    var audio = new Audio("./assets/images/song.mp3");
 
     $(`#start`).click(startGame);
     $(`#restart`).click(startGame);
@@ -134,6 +135,7 @@ $(document).ready(function () {
         $(`#game-screen`).css('display', 'inherit');
         $(`#results-screen`).css('display', 'none');
 
+        audio.play();
         displayQuestion(count);
         runTimer();
     }
