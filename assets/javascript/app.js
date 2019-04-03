@@ -55,9 +55,64 @@ $(document).ready(function () {
         gif: "<img src='./assets/images/sansa.gif' width='300px'/>",
     };
 
-    var questionBank = [question1, question2, question3, question4, question5];
+    var question6 = {
+        text: "What is the surname given to bastards born in Dorne?",
+        answer: [
+            "<div class='choices btn btn-primary'>Rivers</div>",
+            "<div class='choices btn btn-primary'>Stone</div>",
+            "<div class='choices btn btn-primary'>Waters</div>",
+            "<div class='choices btn btn-primary' data-correct='true'>Sand</div>"
+        ],
+        gif: "<img src='./assets/images/sand.gif' width='400px'/>",
+    };
+
+    var question7 = {
+        text: "Who is the ruler of the Iron Islands at the beginning of Game of Thrones?",
+        answer: [
+            "<div class='choices btn btn-primary'>Euron Greyjoy</div>",
+            "<div class='choices btn btn-primary'>Aeron Greyjoy</div>",
+            "<div class='choices btn btn-primary'>Yara Greyjoy</div>",
+            "<div class='choices btn btn-primary' data-correct='true'>Balon Greyjoy</div>"
+        ],
+        gif: "<img src='./assets/images/balon.gif' width='300px'/>",
+    };
+
+    var question8 = {
+        text: "In Season 4, who does Tywin Lannister plan to marry his daughter, Cersei to?",
+        answer: [
+            "<div class='choices btn btn-primary'>Oberyn Martell</div>",
+            "<div class='choices btn btn-primary' data-correct='true'>Loras Tyrell</div>",
+            "<div class='choices btn btn-primary'>Petyr Baelish</div>",
+            "<div class='choices btn btn-primary'>Euron Greyjoy</div>"
+        ],
+        gif: "<img src='./assets/images/loras.gif' width='400px'/>",
+    };
+
+    var question9 = {
+        text: "Who delivered the fatal blow to the King-in-the North, Robb Stark?",
+        answer: [
+            "<div class='choices btn btn-primary'>Walder Frey</div>",
+            "<div class='choices btn btn-primary'>Ramsay Bolton</div>",
+            "<div class='choices btn btn-primary'>Alliser Thorne</div>",
+            "<div class='choices btn btn-primary' data-correct='true'>Roose Bolton</div>"
+        ],
+        gif: "<img src='./assets/images/roose.gif' width='400px'/>",
+    };
+
+    var question10 = {
+        text: "Grey Worm and Missandei became allies of Daenerys Targaryen after she liberated the slaves of which city?",
+        answer: [
+            "<div class='choices btn btn-primary'>Yunkai</div>",
+            "<div class='choices btn btn-primary' data-correct='true'>Astapor</div>",
+            "<div class='choices btn btn-primary'>Qarth</div>",
+            "<div class='choices btn btn-primary'>Meereen</div>"
+        ],
+        gif: "<img src='./assets/images/astapor.gif' width='400px'/>",
+    };
+
+    var questionBank = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
     var intervalId;
-    var number = 30; // Number of seconds remaining
+    var number = 60; // Number of seconds remaining
     var count = 0; // Keeps track of the index of the currently displaying question.
     var wins = 0; // Holds the number of correct questions answered
     var losses = 0; // Holds the number of incorrect questions answered
@@ -69,7 +124,7 @@ $(document).ready(function () {
 
     function startGame() {
 
-        number = 30; // works but is hardcoded
+        number = 60; // works but is hardcoded
         count = 0;
         winn = 0;
         losses = 0;
@@ -115,8 +170,13 @@ $(document).ready(function () {
                 $(this).addClass("choices btn btn-danger");
                 losses++;
                 setTimeout(function () {
+                    clearInterval(intervalId);
+                    $("#image-holder").html("<img src='./assets/images/nope.gif' width='300px'/>");
+                })
+                setTimeout(function () {
+                    runTimer();
                     nextQuestion();
-                }, 1000);
+                }, 3000)
             }
 
         });
