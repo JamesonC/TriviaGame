@@ -13,16 +13,21 @@
     <!-- Custom Stylesheet-->
     <link rel="stylesheet" href="./assets/css/style.css">
 
+    <!-- Link to favicon -->
+    <link rel="icon" type="image/png" href="./assets/images/favicon.ico">
+
     <title>Game of Thrones Trivia</title>
 
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container text-white">
         <div id="splash-screen" class="row">
             <div class="col-lg-12 text-center">
                 <h1 id="title">Game of Thrones Trivia</h1>
+                <h3>See if you're as shrewdly observant as Varys or if you </br> "know nothing" like Jon Snow with these 20
+                    trivia questions.</h3>
                 <button id="start" class="btn btn-primary btn-lg">Start!</button>
             </div>
         </div>
@@ -32,6 +37,16 @@
                 <h3>Time Remaining: <span id=time-remaining>30</span> Seconds</h3>
                 <h4 id=question></h4>
                 <h6 id=answer-choices></h6>
+                <div id=image-holder></div>
+            </div>
+        </div>
+        <div id="results-screen" class="row">
+            <div class="col-lg-12 text-center">
+                <h1>Game of Thrones Trivia</h1>
+                <h3>Time Remaining: <span id=time-remaining>0</span> Seconds</h3>
+                <h4><span id=wins></span> correct questions</h4>
+                <h4><span id=losses></span> incorrect questions</h4>
+                <button id="restart" class="btn btn-primary btn-lg">Restart</button>
             </div>
         </div>
     </div>
