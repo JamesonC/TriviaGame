@@ -63,10 +63,18 @@ $(document).ready(function () {
     $(`#results-screen`).css('display', 'none');
 
     function startGame() {
-        displayQuestion();
+
+        number = 30; // works but is hardcoded
+        count = 0;
+        winn = 0;
+        losses = 0;
+
+        $(`#answer-choices`).empty();
         $(`#splash-screen`).css('display', 'none');
         $(`#game-screen`).css('display', 'inherit');
         $(`#results-screen`).css('display', 'none');
+
+        displayQuestion(count);
         runTimer();
     }
 
@@ -85,12 +93,13 @@ $(document).ready(function () {
     function correct() {
         $(`#answer-choices div`).click(function () {
             var correctAnswer = $(this).data('correct');
-
+    
             if (correctAnswer) {
                 $(this).addClass("choices btn btn-success");
                 wins++
                 count++;
                 setTimeout(function () {
+
                     nextQuestion();
                 }, 1000);
 
@@ -105,16 +114,19 @@ $(document).ready(function () {
         });
     }
 
-    // displays number of correct/incorrect anwers in results screen
-    function results() {
-        $(`#game-screen`).css('display', 'none');
-        $(`#results-screen`).css('display', 'inherit');
-        $(`#wins`).text(wins);
-        $(`#losses`).text(losses);
+// $("#image-holder").html("<img src='./assets/images/loading.gif' width='100px'/>");
+
+    // displays next question within object
+    function nextQuestion() {
+        $(`#image-holder`).empty();
+        $(`#question`).empty();
+        $(`#answer-choices`).empty();
+        displayQuestion();
     }
 
     // timer function that decrements
     function runTimer() {
+
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
 
@@ -124,15 +136,17 @@ $(document).ready(function () {
 
             if (number === 0) {
                 results();
+                clearInterval(intervalId);
             }
         }
     }
 
-    // displays next question within object
-    function nextQuestion() {
-        $(`#question`).empty();
-        $(`#answer-choices`).empty();
-        displayQuestion();
+    // displays number of correct/incorrect anwers in results screen
+    function results() {
+        $(`#game-screen`).css('display', 'none');
+        $(`#results-screen`).css('display', 'inherit');
+        $(`#wins`).text(wins);
+        $(`#losses`).text(losses);
     }
 
 });
