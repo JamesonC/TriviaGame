@@ -180,13 +180,15 @@ $(document).ready(function () {
                     nextQuestion();
                 }, 3000)
             }
-
         });
     }
 
     // displays next question within object
     function nextQuestion() {
         count++;
+        if (count === questionBank.length){
+            results();
+        }
         $(`#image-holder`).empty();
         $(`#question`).empty();
         $(`#answer-choices`).empty();
